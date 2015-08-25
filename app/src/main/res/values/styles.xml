@@ -1,0 +1,61 @@
+<resources>
+
+    <color name="primary_blue">#008fd4</color>
+    <color name="primary_dark_blue">#0077a2</color>
+    <color name="accent">#63479c</color>
+    <color name="background_color">#f1f1f1</color>
+    <color name="black">#222222</color>
+    <color name="white">#ffffff</color>
+    <color name="light_blue">#0094d9</color>
+    <color name="light_purple">#927eba</color>
+
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+
+        <!-- primary theme color used in action bar, etc -->
+        <item name="colorPrimary">@color/primary_blue</item>
+
+        <!--   darker variant for the status bar and contextual app bars -->
+        <item name="colorPrimaryDark">@color/primary_dark_blue</item>
+
+        <!--   theme UI controls like checkboxes and text fields -->
+        <item name="colorAccent">@color/accent</item>
+
+        <!-- default background color used in layouts -->
+        <item name="android:windowBackground">@color/white</item>
+
+        <!-- primary text color -->
+        <item name="android:textColor">@color/black</item>
+
+        <!-- actionbar style -->
+        <item name="android:actionBarStyle">@style/MyActionBarStyle</item>
+
+        <!-- color used on buttons -->
+        <item name="colorButtonNormal">@color/accent</item>
+
+        <!-- color used when pressing clickables -->
+        <item name="colorControlHighlight">@color/light_purple</item>
+
+    </style>
+
+    <style name="MyActionBarStyle" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">@color/primary_blue</item>
+        <item name="popupTheme">@style/ThemeOverlay.AppCompat.Light</item>
+        <item name="theme">@style/ThemeOverlay.AppCompat.Dark.ActionBar</item>
+    </style>
+
+    <style name="Toolbar" parent="Base.ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/primary_blue</item>
+    </style>
+
+    <style name="Toolbar_Popup" parent="Base.ThemeOverlay.AppCompat.ActionBar">
+        <item name="android:textColorPrimary">#fff</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="android:background">@color/primary_blue</item>
+    </style>
+
+
+</resources>
