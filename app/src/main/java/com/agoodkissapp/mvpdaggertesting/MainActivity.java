@@ -7,7 +7,10 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.agoodkissapp.mvpdaggertesting.Login.LoginPresenter;
 import com.agoodkissapp.mvpdaggertesting.Login.LoginView;
@@ -17,7 +20,9 @@ import com.hannesdorfmann.mosby.mvp.lce.MvpLceActivity;
 import java.util.List;
 
 import butterknife.Bind;
+import butterknife.ButterKnife;
 import butterknife.OnClick;
+
 
 public class MainActivity extends MvpActivity<LoginView, LoginPresenter> implements LoginView {
 
@@ -29,6 +34,7 @@ public class MainActivity extends MvpActivity<LoginView, LoginPresenter> impleme
 
     @OnClick(R.id.button)
     public void login(){
+        Log.d(TAG, "button clicked");
         presenter.login(etUsername.getText().toString(), etPassword.getText().toString());
     }
 
@@ -52,6 +58,7 @@ public class MainActivity extends MvpActivity<LoginView, LoginPresenter> impleme
     @Override
     public void onLoginSuccess() {
         Log.d(TAG, "login success");
+        Toast.makeText(this, "Login success!", Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -59,6 +66,17 @@ public class MainActivity extends MvpActivity<LoginView, LoginPresenter> impleme
 
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        ButterKnife.bind(this);
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        ButterKnife.unbind(this);
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
