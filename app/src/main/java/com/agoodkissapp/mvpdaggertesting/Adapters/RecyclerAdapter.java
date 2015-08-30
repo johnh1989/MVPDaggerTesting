@@ -73,7 +73,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         holder.txtTitle.setText(movieList.get(position).title);
 
-        movieList.get(position).setCoverImg();
+        //movieList.get(position).setCoverImg();
 
         holder.imgCover.setImageBitmap(movieList.get(position).imgCover);
 

@@ -121,6 +121,9 @@ public class MovieFragment extends MvpFragment<MovieView, MoviePresenter>
 
     @Override
     public void setData(ArrayList<Movie> movies) {
+        for (Movie movie: movies){
+            movie.setCoverImg();
+        }
         mAdapter.addMovies(movies);
         mAdapter.notifyDataSetChanged();
         mSwipeRefreshLayout.setRefreshing(false);

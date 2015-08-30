@@ -26,8 +26,10 @@ public class MoviePresenter extends MvpBasePresenter<MovieView> {
             public void success(ArrayList<Movie> movies, Response response) {
 
                 Log.d("calling ", "setData");
-                getView().setData(movies);
-                getView().hideLoading();
+                if (isViewAttached()) {
+                    getView().setData(movies);
+                    getView().hideLoading();
+                }
 
             }
 
@@ -35,7 +37,9 @@ public class MoviePresenter extends MvpBasePresenter<MovieView> {
             public void failure(RetrofitError error) {
                 Log.d(TAG, "failure");
                 Log.d(TAG, error.getMessage());
-                getView().hideLoading();
+                if (isViewAttached()) {
+                    getView().hideLoading();
+                }
 
             }
         });
