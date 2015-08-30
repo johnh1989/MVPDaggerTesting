@@ -1,9 +1,11 @@
 package com.agoodkissapp.mvpdaggertesting;
 
 import android.support.annotation.NonNull;
+import android.support.v4.view.ViewPager;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,57 +26,70 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 
-public class MainActivity extends MvpActivity<LoginView, LoginPresenter> implements LoginView {
+public class MainActivity extends AppCompatActivity {
 
     public static String TAG = "MainActivity";
+    private ViewPagerAdapter mViewPagerAdapter;
+    private CharSequence Titles[]={"Home","Movies", "Contacts"};
+    private int Numboftabs =3;
 
-    @Bind(R.id.et_username) EditText etUsername;
 
-    @Bind(R.id.et_password) EditText etPassword;
+    @Bind(R.id.pager) ViewPager mViewPager;
 
-    @OnClick(R.id.button)
-    public void login(){
-        Log.d(TAG, "button clicked");
-        presenter.login(etUsername.getText().toString(), etPassword.getText().toString());
-    }
+    @Bind(R.id.tool_bar) Toolbar mToolbar;
 
-    @NonNull
-    @Override
-    public LoginPresenter createPresenter() {
-        return new LoginPresenter();
-    }
+    @Bind(R.id.tabs) SlidingTabLayout mTabs;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+
+        setSupportActionBar(mToolbar);
+
+        getDelegate().getSupportActionBar().setDisplayShowHomeEnabled(true);
+        getDelegate().getSupportActionBar().setTitle("Resume App");
+
+
+        // Creating The ViewPagerAdapter and Passing Fragment Manager, Titles fot the Tabs and Number Of Tabs.
+        mViewPagerAdapter =  new ViewPagerAdapter(getSupportFragmentManager(),Titles,Numboftabs);
+
+        // Assigning ViewPager View and setting the adapter
+        mViewPager.setAdapter(mViewPagerAdapter);
+
+        // Assiging the Sliding Tab Layout View
+        mTabs.setDistributeEvenly(true); // To make the Tabs Fixed set this true, This makes the tabs Space Evenly in Available width
+
+        // Setting Custom Color for the Scroll bar indicator of the Tab View
+        mTabs.setCustomTabColorizer(new SlidingTabLayout.TabColorizer() {
+            @Override
+            public int getIndicatorColor(int position) {
+                return getResources().getColor(R.color.tabsScrollColor);
+            }
+        });
+
+        // Setting the ViewPager For the SlidingTabsLayout
+        mTabs.setViewPager(mViewPager);
     }
 
-    @Override
-    public void onLoginFailure() {
-        Log.d(TAG, "login failure");
-    }
-
-    @Override
-    public void onLoginSuccess() {
-        Log.d(TAG, "login success");
-        Toast.makeText(this, "Login success!", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void showLoading(){
-
-    }
 
     @Override
     protected void onResume() {
         super.onResume();
-        ButterKnife.bind(this);
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
         ButterKnife.unbind(this);
     }
 

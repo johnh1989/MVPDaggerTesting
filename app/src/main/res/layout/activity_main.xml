@@ -1,4 +1,5 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
@@ -6,40 +7,20 @@
     <include
         android:id="@+id/tool_bar"
         layout="@layout/tool_bar"
+        android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:layout_alignParentTop="true" />
+        />
 
-    <EditText
-        android:hint="username"
+    <com.agoodkissapp.mvpdaggertesting.SlidingTabLayout
+        android:id="@+id/tabs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/et_username"
-        android:layout_below="@+id/tool_bar"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp" />
+        android:background="@color/primary_blue"/>
 
-    <EditText
-        android:hint="password"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_height="match_parent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/et_password"
-        android:layout_below="@+id/et_username"
-        android:layout_centerHorizontal="true"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp" />
+        android:layout_weight="1"/>
 
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:text="Login"
-        android:id="@+id/button"
-        android:layout_below="@+id/et_password"
-        android:layout_marginLeft="16dp"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp" />
-
-</RelativeLayout>
+</LinearLayout>

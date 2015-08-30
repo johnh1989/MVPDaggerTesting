@@ -3,6 +3,7 @@
     <color name="primary_blue">#008fd4</color>
     <color name="primary_dark_blue">#0077a2</color>
     <color name="accent">#63479c</color>
+    <color name="tabsScrollColor">#63479c</color>
     <color name="background_color">#f1f1f1</color>
     <color name="black">#222222</color>
     <color name="white">#ffffff</color>
