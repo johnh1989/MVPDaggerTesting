@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.agoodkissapp.mvpdaggertesting.Movie;
 
@@ -66,7 +67,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.setClickListener(new ClickListener() {
             @Override
             public void onClick(View v, int position) {
-                //Toast.makeText(context, movieList.get(position).title, Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, movieList.get(position).title, Toast.LENGTH_SHORT).show();
             }
         });
 
